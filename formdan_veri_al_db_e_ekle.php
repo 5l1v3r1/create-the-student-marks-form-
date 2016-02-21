@@ -66,7 +66,12 @@ if(isset($_POST["Gönder"]))
 
     $durum=ortalama_hesaplama($ort);
 
-    $ekle = mysqli_query($baglan,"INSERT INTO ogrenciler(no,adı,vize,final,ortalama,durum) VALUES('2','$ad','$vize','$final','$ort','$durum')");
+    // $ekle = mysqli_query($baglan,"INSERT INTO ogrenciler(no,adı,vize,final,ortalama,durum) VALUES('2','$ad','$vize','$final','$ort','$durum')");
+    /*
+    insert sorgusunda primary key ve auyo increment olan kolona değer göndeemzsin. en son kaçta kaldıysa o syıdan artarak devam eder. 
+    sen sorgunda 'no' kolonuna 2 değerini göndermeye çalışmışsın. hata ondan kaynaklanıyor. 
+    */
+    $ekle = mysqli_query($baglan,"INSERT INTO ogrenciler(no,adı,vize,final,ortalama,durum) VALUES(NULL,'$ad','$vize','$final','$ort','$durum')");
     if (isset($ekle)) {
         echo "ekleme başarılı";
     } else {
